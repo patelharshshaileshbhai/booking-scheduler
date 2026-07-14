@@ -13,6 +13,7 @@ import linkRouter from './routes/link';
 
 const app = express();
 
+// Attach request logging before the rest of the middleware so every API call is tracked.
 app.use(
   pinoHttp({
     logger,
@@ -43,6 +44,7 @@ const PORT = Number(process.env.PORT) || 5000;
 if (require.main === module) {
   (async () => {
     try {
+      // Fail fast on broken infrastructure at startup, but keep Redis optional.
       await connectDatabase();
       logger.info('Database connected');
 

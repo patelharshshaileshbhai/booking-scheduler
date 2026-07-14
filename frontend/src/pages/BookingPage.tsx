@@ -88,6 +88,7 @@ export default function BookingPage() {
       });
 
       setMessage(`Booked successfully: ${response.booking.startTime} - ${response.booking.endTime}`);
+      // Re-fetch the slot list so the UI immediately hides the newly booked time.
       const refreshed = await api.booking.slots(token, selectedDate);
       setSlots(refreshed.slots);
       setSelectedSlot(refreshed.slots[0] || null);

@@ -28,7 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     let mounted = true;
-    // Restore the session from the backend before we expose authenticated routes.
+    // Restore the session from the backend before exposing protected routes.
     api.auth
       .me(token)
       .then((response) => {
